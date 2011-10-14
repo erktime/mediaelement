@@ -1,6 +1,7 @@
 import sys
 import os
 import shutil
+import re
 
 me_filename = 'mediaelement'
 mep_filename = 'mediaelementplayer'
@@ -23,6 +24,9 @@ code = ''
 for item in me_files:
 	src_file = open('js/' + item,'r')
 	code += src_file.read() + "\n"
+
+# Remove duplicate new lines on osx.
+code = re.sub("(\r|\n)+", "\n", code)
 
 tmp_file = open('../build/' + me_filename + '.js','w')
 tmp_file.write(code)
@@ -48,6 +52,9 @@ code = ''
 for item in mep_files:
         src_file = open('js/' + item,'r')
         code += src_file.read() + "\n"
+
+# Remove duplicate new lines on osx.
+code = re.sub("(\r|\n)+", "\n", code)
 
 tmp_file = open('../build/' + mep_filename + '.js','w')
 tmp_file.write(code)
